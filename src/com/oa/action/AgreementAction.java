@@ -10,7 +10,6 @@ import org.apache.struts2.ServletActionContext;
 
 import com.oa.listenner.Persistence;
 import com.oa.model.Agreement;
-import com.oa.model.Agreement;
 import com.oa.model.Document;
 import com.oa.model.Users;
 import com.oa.service.AgreementSerivce;

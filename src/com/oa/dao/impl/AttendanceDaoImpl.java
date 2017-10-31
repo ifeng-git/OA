@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
+
 import com.oa.dao.AttendanceDao;
 import com.oa.dao.SuperDaoInte;
 import com.oa.model.OnAndOffRegister;
 import com.oa.model.UserOnAndOffRegister;
-import com.sun.jndi.url.ldaps.ldapsURLContextFactory;
-import com.sun.org.apache.commons.digester.rss.Image;
 
 @Component("attendanceDao")
 public class AttendanceDaoImpl implements AttendanceDao {

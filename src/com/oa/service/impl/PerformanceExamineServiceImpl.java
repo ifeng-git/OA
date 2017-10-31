@@ -1,6 +1,5 @@
 package com.oa.service.impl;
 
-import java.awt.peer.ListPeer;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,16 +10,15 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
+
 import com.oa.dao.SuperDaoInte;
+import com.oa.model.ListPerformanceExamine;
 import com.oa.model.PerformanceExamine;
 import com.oa.model.PerformanceParameters;
 import com.oa.model.Person;
 import com.oa.service.PerformanceExamineSerivce;
-import com.sun.jndi.url.iiopname.iiopnameURLContextFactory;
-import com.sun.org.apache.bcel.internal.generic.NEW;
-import com.sun.org.apache.commons.digester.rss.Image;
-import com.oa.model.ListPerformanceExamine;
 @Component("performanceExamineService")
 public class PerformanceExamineServiceImpl implements PerformanceExamineSerivce{
 

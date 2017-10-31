@@ -1,9 +1,7 @@
 package com.oa.jbpm.handler;
 
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Session;
@@ -13,17 +11,12 @@ import org.jbpm.graph.def.Transition;
 import org.jbpm.graph.exe.ExecutionContext;
 import org.jbpm.graph.exe.Token;
 import org.jbpm.graph.node.EndState;
-import org.jbpm.graph.node.Fork;
-import org.jbpm.graph.node.Join;
 import org.jbpm.graph.node.TaskNode;
-import org.jbpm.taskmgmt.def.Task;
-import org.jbpm.taskmgmt.exe.TaskInstance;
 import org.jbpm.taskmgmt.exe.TaskMgmtInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.oa.util.Constant;
-import com.sun.corba.se.impl.encoding.OSFCodeSetRegistry.Entry;
 
 public class RollbackTransitionAction implements ActionHandler {
 
@@ -36,7 +29,7 @@ public class RollbackTransitionAction implements ActionHandler {
 	public void execute(ExecutionContext executionContext) throws Exception {
 		Token rootToken = executionContext.getProcessInstance().getRootToken();
 		Token currentToken = executionContext.getToken();
-		logger.debug("½øÈëAction");
+		logger.debug("ï¿½ï¿½ï¿½ï¿½Action");
 		String forkName = (String) executionContext.getContextInstance().getVariable("forkName" + currentToken.getId());
 		String preNodeName = (String) executionContext.getContextInstance().getVariable("preNodeName" + currentToken.getId());
 		Session session = executionContext.getJbpmContext().getSession();
@@ -56,27 +49,27 @@ public class RollbackTransitionAction implements ActionHandler {
 		
 
 		boolean isForkOrJoin = false;
-		logger.info("Á÷³Ì¶¨Òå½ÚµãToken" + rootToken == null ? "null" : rootToken + "==");
-		logger.info("µ±Ç°½ÚµãToken" + currentToken);
-		logger.info("µ±Ç°½Úµã¸¸Ç×Token" + currentToken.getParent());
+		logger.info("ï¿½ï¿½ï¿½Ì¶ï¿½ï¿½ï¿½Úµï¿½Token" + rootToken == null ? "null" : rootToken + "==");
+		logger.info("ï¿½ï¿½Ç°ï¿½Úµï¿½Token" + currentToken);
+		logger.info("ï¿½ï¿½Ç°ï¿½Úµã¸¸ï¿½ï¿½Token" + currentToken.getParent());
 		logger.info(executionContext.toString());
 
-		// Èç¹ûµ±Ç°½ÚµãÊÇÔÚ½áÊø½Úµã£¬ÔòÎÞÐè´´½¨ÈÎºÎ·µ»ØTransition
+		// ï¿½ï¿½ï¿½ï¿½ï¿½Ç°ï¿½Úµï¿½ï¿½ï¿½ï¿½Ú½ï¿½ï¿½ï¿½ï¿½Úµã£¬ï¿½ï¿½ï¿½ï¿½ï¿½è´´ï¿½ï¿½ï¿½ÎºÎ·ï¿½ï¿½ï¿½Transition
 		if (executionContext.getNode() instanceof EndState) {
 			return;
 		}
 
-		// µ½´ï¸Ã½ÚµãµÄtransition
+		// ï¿½ï¿½ï¿½ï¿½Ã½Úµï¿½ï¿½transition
 		Set<Transition> arrayingTransition = taskNode.getArrivingTransitions();
-		// ¸Ã½ÚµãÒªÀë¿ªµÄÂ·ÓÉ
+		// ï¿½Ã½Úµï¿½Òªï¿½ë¿ªï¿½ï¿½Â·ï¿½ï¿½
 		List<Transition> leavingTransitions = taskNode.getLeavingTransitions();
 
-		// ·ÀÖ¹Á÷³ÌÁ÷Ïò³ÉÎªÒ»¸öÖ©ÖëÍø
+		// ï¿½ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÎªÒ»ï¿½ï¿½Ö©ï¿½ï¿½ï¿½ï¿½
 		if (arrayingTransition.size() < 2) {
 			boolean ignore = false;
 			boolean isReturn = false;
 
-			// µÃµ½µ±Ç°Ö¸ÏòµÄ½ÚµãËùÓÐ¿ÉÒÔÊ¹ÓÃµÄtransition¶ÔÏóÁÐ±í
+			// ï¿½Ãµï¿½ï¿½ï¿½Ç°Ö¸ï¿½ï¿½Ä½Úµï¿½ï¿½ï¿½ï¿½Ð¿ï¿½ï¿½ï¿½Ê¹ï¿½Ãµï¿½transitionï¿½ï¿½ï¿½ï¿½ï¿½Ð±ï¿½
 			Set ts = executionContext.getToken().getAvailableTransitions();
 
 			for (Iterator iterator = ts.iterator(); iterator.hasNext();) {
@@ -89,8 +82,8 @@ public class RollbackTransitionAction implements ActionHandler {
 				}
 				Node fromNode = t.getTo();
 				String forkname = fromNode.toString();
-				logger.info("µ±Ç°½ÚµãÀ´×Ô" + fromNode.getName());
-				logger.info("µ±Ç°½ÚµãÖ¸ÏòÏÂÒ»¸ö½ÚµãÎª" + t.getTo().getName());
+				logger.info("ï¿½ï¿½Ç°ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½" + fromNode.getName());
+				logger.info("ï¿½ï¿½Ç°ï¿½Úµï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Úµï¿½Îª" + t.getTo().getName());
 
 				if (forkname.matches(Constant.forkRegex)) {
 					List<Transition> forkTransitions = fromNode.getLeavingTransitions();
@@ -113,7 +106,7 @@ public class RollbackTransitionAction implements ActionHandler {
 			if (isReturn)
 				return;
 
-			// Èç¹ûÉÐÎ´´´½¨»ØÍËTransition¶ÔÏó£¬¾Í¿ÉÒÔ¼ÌÐø´´½¨
+			// ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Transitionï¿½ï¿½ï¿½ó£¬¾Í¿ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			if (!ignore) {
 				if (rootToken.getId() != currentToken.getId()) {
 					// isForkOrJoin = true;
@@ -122,15 +115,15 @@ public class RollbackTransitionAction implements ActionHandler {
 					// executionContext.getContextInstance().getVariable(temp1);
 					preNodeName = nodeName;
 				}
-				if (preNodeName != null) { // Ç°Ò»¸ö½Úµã·Ç¿Õ£¬ÐèÒª´´½¨»ØÍËTransition
-					// ´Óµ±Ç°½Úµã
+				if (preNodeName != null) { // Ç°Ò»ï¿½ï¿½ï¿½Úµï¿½Ç¿Õ£ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Transition
+					// ï¿½Óµï¿½Ç°ï¿½Úµï¿½
 					Node from = executionContext.getNode();
 
 					Node to = null;
 
 					to = executionContext.getProcessDefinition().getNode(preNodeName);
 
-					// ´´½¨»ØÍËTransition¶ÔÏó
+					// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Transitionï¿½ï¿½ï¿½ï¿½
 					Transition transition = new Transition();
 					transition.setName(Constant.rollback + preNodeName);
 
